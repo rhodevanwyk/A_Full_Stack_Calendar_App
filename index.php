@@ -7,7 +7,7 @@
   <title>Calendar</title>
   <meta name="description"
     content="A Calendar App created by Rhode Van Wyk, using Vanilla code, PHP, MySQL, HTML, CSS, and JS.">
-  <link rel="icon" type="image/png" href="#">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,22 +17,16 @@
 
 <body>
 
-  <header>
-    <h1>Rhode's Calendar</h1>
-  </header>
-
-  <!-- Calendar Section -->
   <div class="calendar">
     <div class="nav_btn_container">
       <button class="nav_btn"><i class="fa-solid fa-angles-left"></i></button>
-      <h2 id="month_year"></h2>
+      <h2 id="month_year"><i class="fa-solid fa-calendar-day"></i> June 2026</h2>
       <button class="nav_btn"><i class="fa-solid fa-angles-right"></i></button>
     </div>
 
     <div class="calendar_grid" id="calendar"></div>
   </div>
 
-  <!-- Modal Popup -->
   <div class="modal" id="event_modal">
 
     <div class="modal_content">
@@ -46,7 +40,6 @@
         </select>
       </div>
 
-      <!-- Add Form -->
       <form method="POST" id="event_form">
         <input type="hidden" name="action" value="add" id="form_action">
         <input type="hidden" name="event_id" id="event_id">
@@ -66,14 +59,12 @@
         <button type="submit" class="submit_btn">SAVE</button>
       </form>
 
-      <!-- Delete Form -->
       <form method="POST" onsubmit="return confirm('Are You Sure You Want To Delete This Event?')">
         <input type="hidden" name="action" value="delete">
         <input type="hidden" name="event_id" id="delete_event_id">
         <button type="submit" class="submit_btn">DELETE</button>
       </form>
 
-      <!-- Cancel -->
       <button type="button" class="submit_btn">CANCEL</button>
 
     </div>

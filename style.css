@@ -28,14 +28,6 @@ body {
   font-size: 1.5rem;
 }
 
-header {
-  background-color: var(--primary_light);
-  color: var(--primary_dark);
-  padding: 1.5rem;
-  border-radius: 1.5rem;
-  text-align: center;
-}
-
 h1 {
   font-weight: 800;
 }
