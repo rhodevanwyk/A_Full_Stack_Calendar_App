@@ -13,7 +13,7 @@ require_once ("../actions/calendar_data.php");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rhode's Calendar</title>
+  <title>Calendar</title>
   <meta name="description"
     content="A Calendar App created by Rhode Van Wyk, using Vanilla code, PHP, MySQL, HTML, CSS, and JS.">
   <link rel="icon" type="image/png" href="../assets/images/favicon.png">
