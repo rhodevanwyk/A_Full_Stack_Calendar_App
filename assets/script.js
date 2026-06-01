@@ -4,107 +4,107 @@ const modal_el = document.getElementById("event_modal");
 let current_date = new Date();
 
 function render_calendar(date = new Date()) {
-    if (!cal_el || !month_el) {
-        return;
+  if (!cal_el || !month_el) {
+    return;
+  }
+
+  cal_el.innerHTML = "";
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const today = new Date();
+  const total_days = new Date(year, month + 1, 0).getDate();
+  const first_day_of_month = new Date(year, month, 1).getDay();
+
+  month_el.textContent = date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric"
+  });
+
+  const week_days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  week_days.forEach(day => {
+    const day_el = document.createElement("div");
+    day_el.className = "day_name";
+    day_el.textContent = day;
+    cal_el.appendChild(day_el);
+  });
+
+  for (let i = 0; i < first_day_of_month; i++) {
+    cal_el.appendChild(document.createElement("div"));
+  }
+
+  for (let day = 1; day <= total_days; day++) {
+    const date_string = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+    const cell = document.createElement("div");
+    cell.className = "day";
+
+    if (
+      day === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear()
+    ) {
+      cell.classList.add("today");
     }
 
-    cal_el.innerHTML = "";
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const today = new Date();
-    const total_days = new Date(year, month + 1, 0).getDate();
-    const first_day_of_month = new Date(year, month, 1).getDay();
+    const date_el = document.createElement("div");
+    date_el.className = "date_number";
+    date_el.textContent = day;
+    cell.appendChild(date_el);
 
-    month_el.textContent = date.toLocaleDateString("en-US", {
-        month: "long",
-        year: "numeric"
+    const events_today = events.filter(e => e.date === date_string);
+
+    const event_box = document.createElement("div");
+    event_box.className = "events";
+
+    events_today.forEach(event => {
+      const ev = document.createElement("div");
+      ev.className = "event";
+
+      const title_el = document.createElement("div");
+      title_el.className = "title";
+      title_el.textContent = event.title;
+
+      const description_el = document.createElement("div");
+      description_el.className = "description";
+      description_el.textContent = event.description;
+
+      const time_el = document.createElement("div");
+      time_el.className = "time";
+      time_el.textContent = format_event_time(event);
+
+      ev.appendChild(title_el);
+      ev.appendChild(description_el);
+      ev.appendChild(time_el);
+      event_box.appendChild(ev);
     });
 
-    const week_days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    week_days.forEach(day => {
-        const day_el = document.createElement("div");
-        day_el.className = "day_name";
-        day_el.textContent = day;
-        cal_el.appendChild(day_el);
-    });
+    const overlay = document.createElement("div");
+    overlay.className = "day_overlay";
 
-    for (let i = 0; i < first_day_of_month; i++) {
-        cal_el.appendChild(document.createElement("div"));
+    const add_btn = document.createElement("button");
+    add_btn.className = "overlay_add_btn";
+    add_btn.textContent = "Add";
+    add_btn.onclick = e => {
+      e.stopPropagation();
+      open_modal_for_add(date_string);
+    };
+    overlay.appendChild(add_btn);
+
+    if (events_today.length > 0) {
+      const edit_btn = document.createElement("button");
+      edit_btn.className = "overlay_edit_btn";
+      edit_btn.textContent = "Edit";
+      edit_btn.onclick = e => {
+        e.stopPropagation();
+        open_modal_for_edit(events_today);
+      };
+      overlay.appendChild(edit_btn);
     }
 
-    for (let day = 1; day <= total_days; day++) {
-        const date_string = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-        const cell = document.createElement("div");
-        cell.className = "day";
-
-        if (
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
-        ) {
-            cell.classList.add("today");
-        }
-
-        const date_el = document.createElement("div");
-        date_el.className = "date_number";
-        date_el.textContent = day;
-        cell.appendChild(date_el);
-
-        const events_today = events.filter(e => e.date === date_string);
-
-        const event_box = document.createElement("div");
-        event_box.className = "events";
-
-        events_today.forEach(event => {
-            const ev = document.createElement("div");
-            ev.className = "event";
-
-            const title_el = document.createElement("div");
-            title_el.className = "title";
-            title_el.textContent = event.title;
-
-            const description_el = document.createElement("div");
-            description_el.className = "description";
-            description_el.textContent = event.description;
-
-            const time_el = document.createElement("div");
-            time_el.className = "time";
-            time_el.textContent = format_event_time(event);
-
-            ev.appendChild(title_el);
-            ev.appendChild(description_el);
-            ev.appendChild(time_el);
-            event_box.appendChild(ev);
-        });
-
-        const overlay = document.createElement("div");
-        overlay.className = "day_overlay";
-
-        const add_btn = document.createElement("button");
-        add_btn.className = "overlay_add_btn";
-        add_btn.textContent = "Add";
-        add_btn.onclick = e => {
-            e.stopPropagation();
-            open_modal_for_add(date_string);
-        };
-        overlay.appendChild(add_btn);
-
-        if (events_today.length > 0) {
-            const edit_btn = document.createElement("button");
-            edit_btn.className = "overlay_edit_btn";
-            edit_btn.textContent = "Edit";
-            edit_btn.onclick = e => {
-                e.stopPropagation();
-                open_modal_for_edit(events_today);
-            };
-            overlay.appendChild(edit_btn);
-        }
-
-        cell.appendChild(overlay);
-        cell.appendChild(event_box);
-        cal_el.appendChild(cell);
-    }
+    cell.appendChild(overlay);
+    cell.appendChild(event_box);
+    cal_el.appendChild(cell);
+  }
 }
 
 function open_modal_for_add(date_string) {
