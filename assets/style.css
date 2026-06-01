@@ -75,19 +75,24 @@ body {
   gap: 0.5rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
   .calendar_grid {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    flex-direction: column;
   }
 
   .day,
   .day_name {
-    min-width: 10rem;
-    flex-shrink: 0;
-    scroll-snap-align: start;
+    display: none;
+  }
+
+  .modal_content {
+    min-width: 60%;
+  }
+
+  .nav_btn_container {
+    display: grid;
+    justify-content: center;
   }
 }
 
