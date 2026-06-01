@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calendar</title>
+  <title>Rhode's Calendar</title>
   <meta name="description"
     content="A Calendar App created by Rhode Van Wyk, using Vanilla code, PHP, MySQL, HTML, CSS, and JS.">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="../assets/script.js"></script>
 </body>
 
 </html>
