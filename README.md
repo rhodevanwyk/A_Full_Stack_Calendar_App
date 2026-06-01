@@ -1,6 +1,6 @@
-# A Full Stack Calendar App
+# A Simple Calendar App
 
-A simple full-stack calendar application built with PHP, MySQL, HTML, CSS and JavaScript. It provides CRUD operations for calendar events and is designed to run on a local LAMP (Windows/XAMPP) or similar environment.
+A basic full-stack calendar application built with PHP, MySQL, HTML, CSS and JavaScript. It provides CRUD operations for calendar events and is designed to run on a local LAMP (Windows/XAMPP) or similar environment.
 
 <img width="1920" height="1080" alt="calendar_mockup" src="https://github.com/user-attachments/assets/cc0d8ec3-e095-4fea-89b9-1385fc685ac0" />
 
