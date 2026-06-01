@@ -36,10 +36,13 @@ if ($result && $result->num_rows > 0) {
     while ($start_date <= $end_date) {
       $events_from_db[] = [
         "id" => $row["id"],
-        "title" => $row["title"] . " - " . $row['description'],
-        "date" => $start_date->format("y-m-d"),
+        "title" => $row["title"],
+        "description" => $row["description"],
+        "date" => $start_date->format("Y-m-d"),
         "start_date" => $row["start_date"],
-        "end_date" => $row["end_date"]
+        "end_date" => $row["end_date"],
+        "start_time" => $row["start_time"],
+        "end_time" => $row["end_time"]
       ];
 
       $start_date->modify("+1 day");

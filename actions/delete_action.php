@@ -2,9 +2,9 @@
 
 require_once("../database/db_connection.php");
 
-if ($_SERVER["REQUEST_METHOD"] === $_POST && ($_POST["action"] ?? '') === "delete") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "delete") {
 
-  $id = $_POST["id"] ?? null;
+  $id = $_POST["event_id"] ?? null;
 
   if ($id) {
     $stmt = $conn->prepare("
@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === $_POST && ($_POST["action"] ?? '') === "delet
     $stmt->close();
 
     header("Location: " . $_SERVER["PHP_SELF"] . "?success=3");
+    exit;
   } else {
     header("Location: " . $_SERVER["PHP_SELF"] . "?error=3");
     exit;

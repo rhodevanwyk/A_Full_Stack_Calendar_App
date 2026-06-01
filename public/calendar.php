@@ -1,3 +1,12 @@
+<?php
+
+require_once ("../actions/add_action.php");
+require_once ("../actions/edit_action.php");
+require_once ("../actions/delete_action.php");
+require_once ("../actions/calendar_data.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -19,9 +28,14 @@
 
   <div class="calendar">
     <div class="nav_btn_container">
-      <button class="nav_btn"><i class="fa-solid fa-angles-left"></i></button>
-      <h2 id="month_year"><i class="fa-solid fa-calendar-day"></i> June 2026</h2>
-      <button class="nav_btn"><i class="fa-solid fa-angles-right"></i></button>
+      <button class="nav_btn" id="prev_month" type="button"><i class="fa-solid fa-angles-left"></i></button>
+      <h2 id="month_year"><i class="fa-solid fa-calendar-day"></i>
+        <?php
+        $month_year = new DateTime();
+        echo $month_year->format('F Y');
+        ?>
+      </h2>
+      <button class="nav_btn" id="next_month" type="button"><i class="fa-solid fa-angles-right"></i></button>
     </div>
 
     <div class="calendar_grid" id="calendar"></div>
@@ -44,11 +58,11 @@
         <input type="hidden" name="action" value="add" id="form_action">
         <input type="hidden" name="event_id" id="event_id">
 
-        <label for="event_title">Title</label>
-        <input type="text" name="event_title" id="event_title" required>
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required>
 
-        <label for="event_description">Description</label>
-        <input type="text" name="event_description" id="event_description" required>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" required>
 
         <label for="start_date">Start Date</label>
         <input type="date" name="start_date" id="start_date" required>
@@ -56,22 +70,34 @@
         <label for="end_date">End Date</label>
         <input type="date" name="end_date" id="end_date" required>
 
-        <button type="submit" class="submit_btn">SAVE</button>
+        <label for="start_time">Start Time</label>
+        <input type="time" name="start_time" id="start_time">
+
+        <label for="end_time">End Time</label>
+        <input type="time" name="end_time" id="end_time">
+
+        <button type="submit" class="submit_btn">Save</button>
       </form>
 
       <form method="POST" onsubmit="return confirm('Are You Sure You Want To Delete This Event?')">
         <input type="hidden" name="action" value="delete">
         <input type="hidden" name="event_id" id="delete_event_id">
-        <button type="submit" class="submit_btn">DELETE</button>
+        <div class="can_del_btns">
+          <button type="submit" class="submit_btn">Delete</button>
+          <button type="button" class="submit_btn" id="cancel_modal">Cancel</button>
+        </div>
       </form>
 
-      <button type="button" class="submit_btn">CANCEL</button>
 
     </div>
 
   </div>
 
+  <script>
+    const events = <?= json_encode($events_from_db ?? ($events ?? []), JSON_UNESCAPED_UNICODE); ?>;
+  </script>
   <script src="../assets/script.js"></script>
+
 </body>
 
 </html>
