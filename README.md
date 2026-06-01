@@ -19,7 +19,7 @@ A simple full-stack calendar application built with PHP, MySQL, HTML, CSS and Ja
 **Repository Structure**
 - `actions/` : PHP endpoints (`add_action.php`, `edit_action.php`, `delete_action.php`, `calendar_data.php`)
 - `assets/` : Frontend assets (`script.js`, `style.css`, images)
-- `database/` : Database schema (`calendar_db.sql`) and `db_connection.php`
+- `database/` : Database schema (`calendar_db.sql`) and (`db_connection.php`)
 - `public/` : Public-facing page (`calendar.php`)
 - `README.md` : This file
 
