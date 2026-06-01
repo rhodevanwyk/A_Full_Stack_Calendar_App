@@ -2,6 +2,8 @@
 
 A simple full-stack calendar application built with PHP, MySQL, HTML, CSS and JavaScript. It provides CRUD operations for calendar events and is designed to run on a local LAMP (Windows/XAMPP) or similar environment.
 
+<img width="1863" height="1157" alt="calendar_img" src="https://github.com/user-attachments/assets/5123b74f-b3a8-464e-be76-d3a3e51c1609" />
+
 **Features**
 - Add, edit and delete calendar events
 - Persist events in MySQL database
@@ -44,4 +46,4 @@ A simple full-stack calendar application built with PHP, MySQL, HTML, CSS and Ja
 - Make sure Apache has write/read access if you store uploads or images.
 
 **License**
-This project is released under the MIT License. Modify as needed.
+- This project is released under the MIT License. Modify as needed.
