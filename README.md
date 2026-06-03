@@ -1,8 +1,8 @@
 # A Simple Calendar App
 
-A basic full-stack calendar application built with PHP, MySQL, HTML, CSS and JavaScript. It provides CRUD operations for calendar events and is designed to run on a local LAMP (Windows/XAMPP) or similar environment.
+A basic full-stack calendar application built with PHP, MySQL, HTML, HTML, CSS (Tailwind CSS 4 + daisyUI 5) and JavaScript. It provides CRUD operations for calendar events and is designed to run on a local LAMP (Windows/XAMPP) or similar environment.
 
-<img width="1920" height="1080" alt="calendar_mockup" src="https://github.com/user-attachments/assets/cc0d8ec3-e095-4fea-89b9-1385fc685ac0" />
+<img width="1920" height="1080" alt="mockup" src="https://github.com/user-attachments/assets/f65c2aa7-6cd8-4101-a033-2a98ed9604f0" />
 
 **Features**
 - Add, edit and delete calendar events
