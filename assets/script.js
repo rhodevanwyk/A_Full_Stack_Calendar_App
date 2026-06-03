@@ -15,53 +15,60 @@ function render_calendar(date = new Date()) {
   const total_days = new Date(year, month + 1, 0).getDate();
   const first_day_of_month = new Date(year, month, 1).getDay();
 
-  month_el.textContent = date.toLocaleDateString("en-US", {
+  const month_label = date.toLocaleDateString("en-US", {
     month: "long",
     year: "numeric"
   });
+  month_el.innerHTML = `<i class="fa-solid fa-calendar-day text-primary-content"></i> ${month_label}`;
 
   const week_days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   week_days.forEach(day => {
     const day_el = document.createElement("div");
-    day_el.className = "day_name";
+    day_el.className = "day_name text-center font-bold mb-2 max-md:hidden";
     day_el.textContent = day;
     cal_el.appendChild(day_el);
   });
 
   for (let i = 0; i < first_day_of_month; i++) {
-    cal_el.appendChild(document.createElement("div"));
+    const spacer = document.createElement("div");
+    spacer.className = "calendar_spacer max-md:hidden";
+    cal_el.appendChild(spacer);
   }
 
   for (let day = 1; day <= total_days; day++) {
     const date_string = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
     const cell = document.createElement("div");
-    cell.className = "day";
+    cell.className =
+      "day bg-base-100 text-base-content rounded-box min-h-40 p-6 flex flex-col gap-2 relative cursor-pointer";
 
     if (
       day === today.getDate() &&
       month === today.getMonth() &&
       year === today.getFullYear()
     ) {
-      cell.classList.add("today");
+      cell.classList.add("today", "border-b-4", "border-primary");
     }
 
     const date_el = document.createElement("div");
-    date_el.className = "date_number";
-    date_el.textContent = day;
+    date_el.className = "date_number font-bold text-left";
+    const weekday = new Date(year, month, day).toLocaleDateString("en-US", { weekday: "long" });
+    date_el.innerHTML =
+      `<span class="md:hidden">${weekday}, </span><span>${day}</span>`;
     cell.appendChild(date_el);
 
     const events_today = events.filter(e => e.date === date_string);
 
     const event_box = document.createElement("div");
-    event_box.className = "events";
+    event_box.className = "events flex flex-col gap-2";
 
     events_today.forEach(event => {
       const ev = document.createElement("div");
-      ev.className = "event";
+      ev.className =
+        "event border-2 border-secondary rounded-box p-2 cursor-pointer hover:bg-secondary/30 flex flex-col items-start";
 
       const title_el = document.createElement("div");
-      title_el.className = "title";
+      title_el.className = "title font-extrabold text-sm text-left";
       title_el.textContent = event.title;
 
       const description_el = document.createElement("div");
@@ -69,7 +76,7 @@ function render_calendar(date = new Date()) {
       description_el.textContent = event.description;
 
       const time_el = document.createElement("div");
-      time_el.className = "time";
+      time_el.className = "time text-xs text-left";
       time_el.textContent = format_event_time(event);
 
       ev.appendChild(title_el);
@@ -82,7 +89,7 @@ function render_calendar(date = new Date()) {
     overlay.className = "day_overlay";
 
     const add_btn = document.createElement("button");
-    add_btn.className = "overlay_add_btn";
+    add_btn.className = "btn btn-primary btn-sm font-extrabold overlay_add_btn";
     add_btn.textContent = "Add";
     add_btn.onclick = e => {
       e.stopPropagation();
@@ -92,7 +99,7 @@ function render_calendar(date = new Date()) {
 
     if (events_today.length > 0) {
       const edit_btn = document.createElement("button");
-      edit_btn.className = "overlay_edit_btn";
+      edit_btn.className = "btn btn-secondary btn-sm font-extrabold overlay_edit_btn";
       edit_btn.textContent = "Edit";
       edit_btn.onclick = e => {
         e.stopPropagation();
@@ -123,31 +130,34 @@ function open_modal_for_add(date_string) {
 
   if (selector && wrapper) {
     selector.innerHTML = "";
-    wrapper.style.display = "none";
+    wrapper.classList.add("hidden");
+    wrapper.classList.remove("block");
   }
 
-  modal_el.style.display = "flex";
+  modal_el?.showModal();
 }
 
 function open_modal_for_edit(events_on_date) {
   document.getElementById("form_action").value = "edit";
-  modal_el.style.display = "flex";
+  modal_el?.showModal();
 
   const selector = document.getElementById("event_selector");
   const wrapper = document.getElementById("event_selector_wrapper");
-  selector.innerHTML = "<option disabled selected>Choose Event...</option>"
+  selector.innerHTML = "<option disabled selected>Choose Event...</option>";
 
   events_on_date.forEach(e => {
     const option = document.createElement("option");
     option.value = JSON.stringify(e);
     option.textContent = `${e.title} (${e.start_date} > ${e.end_date})`;
-    selector.appendChild(option)
+    selector.appendChild(option);
   });
 
   if (events_on_date.length > 1) {
-    wrapper.style.display = "block";
+    wrapper.classList.remove("hidden");
+    wrapper.classList.add("block");
   } else {
-    wrapper.style.display = "none";
+    wrapper.classList.add("hidden");
+    wrapper.classList.remove("block");
   }
 
   handle_event_selection(JSON.stringify(events_on_date[0]));
@@ -168,7 +178,7 @@ function handle_event_selection(event_JSON) {
 }
 
 function close_modal() {
-  modal_el.style.display = "none";
+  modal_el?.close();
 }
 
 function change_month(offset) {

@@ -1,0 +1,13 @@
+{
+  "name": "a-simple-calendar-app",
+  "private": true,
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./assets/input.css -o ./assets/style.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./assets/input.css -o ./assets/style.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.10",
+    "daisyui": "^5.0.43",
+    "tailwindcss": "^4.1.10"
+  }
+}

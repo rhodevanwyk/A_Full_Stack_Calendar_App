@@ -13,7 +13,7 @@ A basic full-stack calendar application built with PHP, MySQL, HTML, CSS and Jav
 **Tech Stack**
 - Backend: PHP
 - Database: MySQL
-- Frontend: HTML, CSS, JavaScript
+- Frontend: HTML, CSS (Tailwind CSS 4 + daisyUI 5), JavaScript
 - Tested on: XAMPP (Apache + MySQL)
 
 **Repository Structure**
@@ -39,6 +39,10 @@ A basic full-stack calendar application built with PHP, MySQL, HTML, CSS and Jav
 
 **Developing & Testing**
 - Modify frontend files in `assets/` and server logic in `actions/`.
+- CSS uses Tailwind + daisyUI. Edit `assets/input.css`, then build:
+  - `npm install` (first time only)
+  - `npm run build:css` (compile to `assets/style.css`)
+  - `npm run watch:css` (rebuild on save while developing)
 - To reset sample data, re-import `database/calendar_db.sql`.
 
 **Notes**
