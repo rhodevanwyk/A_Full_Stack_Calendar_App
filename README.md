@@ -51,3 +51,5 @@ A basic full-stack calendar application built with PHP, MySQL, HTML, HTML, CSS (
 
 **License**
 - This project is released under the MIT License. Modify as needed.
+
+<img width="1920" height="1080" alt="phone_mockup" src="https://github.com/user-attachments/assets/d7460123-abcd-450f-be97-0562018f031d" />
